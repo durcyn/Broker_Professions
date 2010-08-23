@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: Broker: Professions
+## Notes: Profession launcher objects for any Broker display 
+## Author: durcyn
+
+LibStub.lua
+CallbackHandler-1.0.xml
+LibDataBroker-1.1.lua
+
+Broker_Professions.lua
