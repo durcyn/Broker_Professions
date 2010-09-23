@@ -27,17 +27,9 @@ local f = CreateFrame("Frame")
 f:Hide()
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
 f:RegisterEvent("SPELLS_CHANGED")
-f:SetScript("OnEvent", function(frame, event, ...) if f.event then f:event(...) end end)
-
-function f:PLAYER_ENTERING_WORLD()
-	for k,v in pairs(secondary) do
-		local icon = select(3, GetSpellInfo(v))
-		if icon then
-			f:create(v, icon)
-		end
-	end
-	f:SPELLS_CHANGED()
-end
+f:SetScript("OnEvent", function(self, event, ...)
+	self[event](self, ...)
+end)
 
 function f:SPELLS_CHANGED()
 	local counter = 1
@@ -50,8 +42,18 @@ function f:SPELLS_CHANGED()
 	end
 end
 
+function f:PLAYER_ENTERING_WORLD()
+	for k,v in pairs(secondary) do
+		local icon = select(3, GetSpellInfo(v))
+		if icon then
+			f:create(v, icon)
+		end
+	end
+	f:SPELLS_CHANGED()
+end
+
 function f:create(spell, icon, index)
-	local prof = index or spell
+	local prof = ("Profession_%s"):format(index or spell)
 	if not f[prof] then
 		f[prof] = LibStub("LibDataBroker-1.1"):NewDataObject(prof)
 		f[prof].type = "launcher"
