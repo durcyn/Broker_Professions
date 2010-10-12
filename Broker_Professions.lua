@@ -12,7 +12,6 @@ local primary = {
 	(GetSpellInfo(25229)), -- Jewelcrafting
 	(GetSpellInfo(2108)), -- Leatherworking
 	(GetSpellInfo(2656)), -- Smelting
-	(GetSpellInfo(2842)), -- Poisons
 	(GetSpellInfo(3908)), -- Tailoring
 	(GetSpellInfo(53428)), -- Runeforging
 	(GetSpellInfo(45357)), -- Inscription
