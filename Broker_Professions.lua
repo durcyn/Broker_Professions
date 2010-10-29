@@ -18,6 +18,7 @@ local primary = {
 }
 
 local secondary = {
+	(GetSpellInfo(78670)), -- Archaeology
 	(GetSpellInfo(2550)), -- Cooking
 	(GetSpellInfo(3273)), -- First Aid
 }
