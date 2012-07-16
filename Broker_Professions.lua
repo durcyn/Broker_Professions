@@ -55,9 +55,9 @@ end
 function f:create(spell, icon, index)
 	local prof = ("Profession_%s"):format(index or spell)
 	if not f[prof] then
-		f[prof] = LibStub("LibDataBroker-1.1"):NewDataObject(prof)
-		f[prof].type = "launcher"
+		f[prof] = LibStub("LibDataBroker-1.1"):NewDataObject(prof, {type = "launcher", label = prof, icon = icon})
 	end
-	f[prof].icon = icon
+	if f[prof].icon ~= icon then f[prof].icon = icon end
+	if f[prof].label ~= prof then f[prof].label = prof end
 	f[prof].OnClick = function() CastSpellByName(spell) end
 end
