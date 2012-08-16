@@ -31,7 +31,7 @@ f:SetScript("OnEvent", function(self, event, ...)
 	self[event](self, ...)
 end)
 
-function f:SPELLS_CHANGED()
+function f:Update()
 	local counter = 1
 	for k,v in pairs(primary) do
 		local icon = select(3, GetSpellInfo(v))
@@ -40,16 +40,21 @@ function f:SPELLS_CHANGED()
 			counter = counter + 1
 		end
 	end
-end
 
-function f:PLAYER_ENTERING_WORLD()
 	for k,v in pairs(secondary) do
 		local icon = select(3, GetSpellInfo(v))
 		if icon then
 			f:create(v, icon)
 		end
 	end
-	f:SPELLS_CHANGED()
+end
+
+function f:SPELLS_CHANGED()
+	f:Update()
+end
+
+function f:PLAYER_ENTERING_WORLD()
+	f:Update()
 end
 
 function f:create(spell, icon, index)
